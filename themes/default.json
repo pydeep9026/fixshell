@@ -1,0 +1,14 @@
+{
+  "name": "default",
+  "colors": {
+    "background": "#000000",
+    "foreground": "#ffffff",
+    "suggestion": "#00ff00",
+    "error": "#ff0000",
+    "warning": "#ffff00",
+    "info": "#00ffff"
+  }
+}
+
+
+

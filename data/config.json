@@ -1,0 +1,14 @@
+{
+  "mouse_enabled": false,
+  "show_suggestions": true,
+  "show_completions": true,
+  "auto_correct": false,
+  "session_recording": true,
+  "danger_detection": true,
+  "env_detection": true,
+  "command_timer": true,
+  "flag_descriptions": true,
+  "git_diff_viewer": true,
+  "help_index": true
+}
+

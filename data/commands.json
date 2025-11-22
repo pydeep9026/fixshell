@@ -1,0 +1,182 @@
+{
+  "git": {
+    "subcommands": ["push", "pull", "commit", "add", "status", "checkout", "branch", "merge", "diff", "log", "show", "reset", "rebase"],
+    "flags": {
+      "global": {
+        "--amend": "Amend the previous commit",
+        "--no-verify": "Bypass hooks",
+        "--verbose": "Show verbose output",
+        "--quiet": "Suppress output",
+        "--dry-run": "Show what would be done"
+      },
+      "commit": {
+        "--amend": "Amend the previous commit",
+        "--message": "Use the given message as the commit message",
+        "--no-verify": "Bypass hooks",
+        "--all": "Commit all changes"
+      },
+      "push": {
+        "--force": "Force push",
+        "--tags": "Push tags",
+        "--set-upstream": "Set upstream branch",
+        "--all": "Push all branches"
+      },
+      "pull": {
+        "--rebase": "Pull with rebase",
+        "--no-edit": "Don't edit commit message",
+        "--ff-only": "Fast-forward only"
+      },
+      "reset": {
+        "--hard": "Reset working directory",
+        "--soft": "Reset commit only",
+        "--mixed": "Reset commit and staging"
+      }
+    }
+  },
+  "kubectl": {
+    "subcommands": ["get", "apply", "delete", "describe", "logs", "exec", "port-forward", "scale", "rollout", "create"],
+    "flags": {
+      "global": {
+        "--namespace": "Namespace for the request",
+        "-n": "Namespace for the request",
+        "--context": "Name of the kubeconfig context to use",
+        "--kubeconfig": "Path to the kubeconfig file",
+        "--all-namespaces": "List resources across all namespaces",
+        "-A": "List resources across all namespaces"
+      },
+      "get": {
+        "--output": "Output format",
+        "-o": "Output format",
+        "--watch": "Watch for changes",
+        "-w": "Watch for changes",
+        "--selector": "Selector to filter on",
+        "-l": "Selector to filter on",
+        "--sort-by": "Sort list types",
+        "--wide": "Show more information",
+        "-o wide": "Show more information"
+      },
+      "describe": {
+        "--selector": "Selector to filter on",
+        "-l": "Selector to filter on"
+      },
+      "logs": {
+        "--follow": "Follow log output",
+        "-f": "Follow log output",
+        "--tail": "Number of lines to show",
+        "--previous": "Previous instance logs",
+        "-p": "Previous instance logs"
+      },
+      "delete": {
+        "--all": "Delete all resources",
+        "--force": "Force deletion",
+        "--grace-period": "Grace period in seconds"
+      },
+      "exec": {
+        "--stdin": "Pass stdin to container",
+        "-i": "Pass stdin to container",
+        "--tty": "Allocate a TTY",
+        "-t": "Allocate a TTY"
+      }
+    }
+  },
+  "docker": {
+    "subcommands": ["build", "run", "ps", "images", "rm", "rmi", "stop", "start", "restart", "logs", "exec", "push", "pull"],
+    "flags": {
+      "global": {
+        "--help": "Show help",
+        "-h": "Show help"
+      },
+      "build": {
+        "--tag": "Name and tag for the image",
+        "-t": "Name and tag for the image",
+        "--file": "Name of Dockerfile",
+        "-f": "Name of Dockerfile",
+        "--no-cache": "Do not use cache when building"
+      },
+      "run": {
+        "--detach": "Run in background",
+        "-d": "Run in background",
+        "--interactive": "Keep STDIN open",
+        "-i": "Keep STDIN open",
+        "--tty": "Allocate a pseudo-TTY",
+        "-t": "Allocate a pseudo-TTY",
+        "--rm": "Remove container when it exits",
+        "--port": "Publish port",
+        "-p": "Publish port",
+        "--env": "Set environment variable",
+        "-e": "Set environment variable",
+        "--volume": "Mount volume",
+        "-v": "Mount volume"
+      },
+      "ps": {
+        "--all": "Show all containers",
+        "-a": "Show all containers",
+        "--latest": "Show latest container",
+        "-l": "Show latest container"
+      },
+      "rmi": {
+        "--force": "Force removal",
+        "-f": "Force removal"
+      }
+    }
+  },
+  "npm": {
+    "subcommands": ["install", "run", "start", "test", "build", "publish", "update"],
+    "flags": {
+      "global": {
+        "--version": "Show version",
+        "-v": "Show version",
+        "--help": "Show help",
+        "-h": "Show help"
+      },
+      "install": {
+        "--save": "Save to dependencies",
+        "-S": "Save to dependencies",
+        "--save-dev": "Save to devDependencies",
+        "-D": "Save to devDependencies",
+        "--global": "Install globally",
+        "-g": "Install globally"
+      },
+      "run": {
+        "--silent": "Suppress output",
+        "-s": "Suppress output"
+      }
+    }
+  },
+  "python": {
+    "subcommands": ["-m", "manage"],
+    "flags": {
+      "global": {
+        "--version": "Show version",
+        "-V": "Show version",
+        "--help": "Show help",
+        "-h": "Show help"
+      }
+    }
+  },
+  "pip": {
+    "subcommands": ["install", "uninstall", "list", "show", "freeze", "search"],
+    "flags": {
+      "global": {
+        "--version": "Show version",
+        "-V": "Show version",
+        "--help": "Show help",
+        "-h": "Show help"
+      },
+      "install": {
+        "--user": "Install to user site",
+        "--upgrade": "Upgrade package",
+        "-U": "Upgrade package",
+        "--requirement": "Install from requirements file",
+        "-r": "Install from requirements file"
+      },
+      "list": {
+        "--outdated": "List outdated packages",
+        "-o": "List outdated packages"
+      }
+    }
+  }
+}
+
+
+

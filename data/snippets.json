@@ -1,0 +1,8 @@
+{
+  "build": "docker build -t {name} .",
+  "deploy": "kubectl apply -f {file} -n {namespace}",
+  "test": "python -m pytest {path}"
+}
+
+
+
