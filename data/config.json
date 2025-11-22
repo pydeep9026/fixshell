@@ -1,14 +1,13 @@
 {
-  "mouse_enabled": false,
+  "mouse_enabled": true,
   "show_suggestions": true,
-  "show_completions": true,
   "auto_correct": false,
   "session_recording": true,
   "danger_detection": true,
   "env_detection": true,
   "command_timer": true,
   "flag_descriptions": true,
+  "show_completions": true,
   "git_diff_viewer": true,
   "help_index": true
 }
-

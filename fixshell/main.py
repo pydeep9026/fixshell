@@ -38,6 +38,8 @@ class FixShell:
         self.help_index_builder = HelpIndexBuilder()
         self.input_handler = None
         self.running = True
+        self.mouse_mode = False
+        self.mouse_mode = False
         
     def display_prompt(self):
         cols, rows = get_terminal_size()
@@ -129,11 +131,31 @@ class FixShell:
         self.snippet_manager.save_snippet(name, template)
         print(f"\033[32m✓ Snippet '{name}' saved!\033[0m")
     
+    def show_time(self):
+        from datetime import datetime, timezone, timedelta
+        import time
+        
+        utc_now = datetime.now(timezone.utc)
+        
+        ist_offset = timedelta(hours=5, minutes=30)
+        cst_offset = timedelta(hours=-6)
+        
+        ist_time = utc_now + ist_offset
+        cst_time = utc_now + cst_offset
+        utc_time = utc_now
+        
+        print("\n\033[1mCurrent Time:\033[0m")
+        print(f"  \033[36mIST\033[0m  (India Standard Time):     {ist_time.strftime('%Y-%m-%d %H:%M:%S')} (UTC+5:30)")
+        print(f"  \033[33mCST\033[0m  (Chicago Standard Time):   {cst_time.strftime('%Y-%m-%d %H:%M:%S')} (UTC-6:00)")
+        print(f"  \033[32mUTC\033[0m  (Coordinated Universal):   {utc_time.strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"  \033[32mGMT\033[0m  (Greenwich Mean Time):    {utc_time.strftime('%Y-%m-%d %H:%M:%S')}")
+        print()
+    
     def show_help(self):
         print("\n\033[1mfixshell Commands:\033[0m")
         print("  :history, :h      - Search command history (fuzzy)")
         print("  :save <name> <template> - Save a command snippet")
-        print("  :mouse            - Toggle mouse/pointer mode")
+        print("  :time             - Show current time (IST, CST, UTC, GMT)")
         print("  :help, :?         - Show this help")
         print("  exit              - Exit fixshell")
         print("\n\033[1mFeatures:\033[0m")
@@ -195,15 +217,19 @@ class FixShell:
         if features_enabled:
             print(f"\033[90mFeatures: {', '.join(features_enabled)}\033[0m")
         
-        mouse_enabled = self.config.is_mouse_enabled()
-        if mouse_enabled and self.mouse_handler.terminal_supports_mouse:
+        self.mouse_mode = self.config.is_mouse_enabled()
+        if self.mouse_mode:
             if self.mouse_handler.enable_mouse_mode():
-                print("\033[33mMouse mode: ENABLED\033[0m (click to place cursor)")
+                print("\033[33mMouse mode: ENABLED\033[0m (click to place cursor, then type)")
             else:
-                print("\033[90mMouse mode: Not supported in this terminal\033[0m")
+                self.mouse_mode = False
+                print("\033[90mMouse mode: Failed to enable\033[0m")
         else:
             print("\033[90mMouse mode: Disabled (type ':mouse' to enable)\033[0m")
         print()
+        
+        from .input_with_mouse import InputWithMouse
+        input_handler = InputWithMouse()
         
         self.session_recorder.start_session()
         
@@ -211,7 +237,10 @@ class FixShell:
             while self.running:
                 try:
                     prompt = self.display_prompt()
-                    user_input = input(prompt).strip()
+                    if self.mouse_mode:
+                        user_input = input_handler.read_line_with_mouse(prompt, mouse_enabled=True).strip()
+                    else:
+                        user_input = input(prompt).strip()
                 except (EOFError, KeyboardInterrupt):
                     print("\n")
                     self.running = False
@@ -219,20 +248,22 @@ class FixShell:
                 
                 if user_input.startswith(':'):
                     if user_input == ':mouse':
-                        if self.mouse_handler.terminal_supports_mouse:
-                            if self.mouse_handler.mouse_enabled:
-                                self.mouse_handler.disable_mouse_mode()
-                                self.config.disable_mouse()
-                                print("Mouse mode: DISABLED")
-                            else:
-                                if self.mouse_handler.enable_mouse_mode():
-                                    self.config.enable_mouse()
-                                    print("Mouse mode: ENABLED")
-                                else:
-                                    print("Mouse mode: Failed to enable")
+                        if self.mouse_mode:
+                            self.mouse_handler.disable_mouse_mode()
+                            self.config.disable_mouse()
+                            self.mouse_mode = False
+                            print("Mouse mode: DISABLED")
                         else:
-                            print("Mouse mode: Not supported in this terminal")
+                            if self.mouse_handler.enable_mouse_mode():
+                                self.config.enable_mouse()
+                                self.mouse_mode = True
+                                print("Mouse mode: ENABLED (click to place cursor, then type)")
+                            else:
+                                print("Mouse mode: Failed to enable")
                         print()
+                        continue
+                    elif user_input == ':time':
+                        self.show_time()
                         continue
                     elif user_input == ':history' or user_input == ':h':
                         result = self.show_history_search()

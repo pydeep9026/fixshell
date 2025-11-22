@@ -63,7 +63,6 @@ fixshell
 - `:help` or `:?` - Show help
 - `:history` or `:h` - Search command history (fuzzy)
 - `:save <name> <template>` - Save a command snippet
-- `:mouse` - Toggle mouse mode (Linux terminals only)
 - `exit` - Exit fixshell
 
 ## Examples

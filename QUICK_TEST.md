@@ -159,14 +159,14 @@ fixshell> :?
 
 ## 15. Built-in Commands
 ```bash
+fixshell> :time
+# Show current time in IST, CST, UTC, GMT
+
 fixshell> :save test "echo {name}"
 # Save snippet
 
 fixshell> :history
 # Search history
-
-fixshell> :mouse
-# Toggle mouse mode (if supported)
 
 fixshell> :help
 # Show help
