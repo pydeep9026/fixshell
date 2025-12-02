@@ -1,0 +1,57 @@
+{
+  "patterns": [
+    {
+      "pattern": "rm -rf /",
+      "reason": "Delete root filesystem",
+      "severity": "critical"
+    },
+    {
+      "pattern": "rm -rf /\\*",
+      "reason": "Delete root filesystem",
+      "severity": "critical"
+    },
+    {
+      "pattern": "kubectl delete pod --all",
+      "reason": "Delete all pods",
+      "severity": "high"
+    },
+    {
+      "pattern": "kubectl delete.*--all",
+      "reason": "Delete all resources",
+      "severity": "high"
+    },
+    {
+      "pattern": "git reset --hard",
+      "reason": "Hard reset (destructive)",
+      "severity": "high"
+    },
+    {
+      "pattern": "docker rmi.*--force",
+      "reason": "Force delete images",
+      "severity": "medium"
+    },
+    {
+      "pattern": "docker rm.*--force",
+      "reason": "Force delete containers",
+      "severity": "medium"
+    },
+    {
+      "pattern": "dd if=.*of=/dev/",
+      "reason": "Direct disk write (destructive)",
+      "severity": "critical"
+    },
+    {
+      "pattern": "mkfs.*",
+      "reason": "Format filesystem (destructive)",
+      "severity": "critical"
+    },
+    {
+      "pattern": "fdisk.*",
+      "reason": "Disk partitioning (destructive)",
+      "severity": "critical"
+    }
+  ]
+}
+
+
+
